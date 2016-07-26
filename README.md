@@ -6,6 +6,6 @@ My 'practice' got a little out of hand, and portions of what will later be code 
 
 This repository currently contains partially completed code for...
 
-    1.  The Manager Dashboard - The view the manager will see upon logging in, allowing them to see the current schedule, alerts, and manage schedules and staff.
-    2.  Edit/Create Shifts Comonent - Allows managers to indicate what shifts exist throught the week/day.
-    3.  Edit/Create New Schedule Component - Allows managers to drag and drop staff onto a calendar to create or edit shifts.
+1.  The Manager Dashboard - The view the manager will see upon logging in, allowing them to see the current schedule, alerts, and manage schedules and staff.
+2.  Edit/Create Shifts Component - Allows managers to indicate what shifts exist throught the week/day.
+3.  Edit/Create New Schedule Component - Allows managers to drag and drop staff onto a calendar to create or edit shifts.
