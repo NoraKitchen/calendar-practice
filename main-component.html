@@ -1,0 +1,10 @@
+<div class="container">
+    <section class="row">
+        <div id="employeeCol" class="col-md-3">
+            <div ng-repeat="employee in $ctrl.fakeEmployeeList" class="employee">{{employee.name}}</div>
+        </div>
+        <div class="col-md-9">
+            <div id="calendar" ui-calendar="$ctrl.uiConfig.calendar" calendar="myCalendar" ng-model="$ctrl.stuffs"></div>
+        </div>
+    </section>
+</div>

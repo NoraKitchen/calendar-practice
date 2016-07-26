@@ -1,0 +1,68 @@
+
+
+<div class="container">
+    <section>
+
+        <div class="row">
+            <div class="col-md-12" id="manager-dashboard-header">
+                <h3>Manager Dashboard</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="left-dash" class="col-md-4">
+                <div class="row">
+                    <div id="alerts" class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Alerts
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-unstyled pre-scrollable" id="alerts-list">
+                                    <li ng-repeat="alert in $ctrl.alerts">
+                                        <div class="alert alert-info" id="manager-alert">
+                                            <span ng-class="{'resolved-alert': alert.resolved}">{{alert.body}}</span>
+                                            <a href="#" class="pull-right">X</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--</div>-->
+                <div class="row">
+                    <div id="manage-schedules" class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Manage Schedules
+                            </div>
+                            <div class="panel-body">
+                                <button class="btn btn-primary">New Schedule</button>
+                                <button class="btn btn-info">Current Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="manage-staff" class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Manage Staff
+                            </div>
+                            <div class="panel-body">
+                                <button class="btn btn-primary">Current Staff</button>
+                                <button class="btn btn-info">Add New Staff</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div ui-calendar="$ctrl.uiConfig.calendar" ng-model="$ctrl.testCalendar"></div>
+            </div>
+        </div>
+
+
+    </section>
+</div>

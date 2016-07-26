@@ -1,0 +1,25 @@
+{
+  "name": "calendar-practice",
+  "authors": [
+    "NoraKitchen <narwhaltortellini@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-calendar": "^1.0.1",
+    "angular": "^1.5.5",
+    "jquery-ui": "^1.11.4",
+    "bootstrap": "^3.3.6",
+    "bootstrap-multiselect": "^0.9.13",
+    "bootstrap-timepicker": "^0.5.2"
+  }
+}

@@ -1,0 +1,334 @@
+<div class="container">
+    <section>
+
+        <div class="row">
+            <div class="col-md-12" id="create-schedule-header">
+                <h3>Create New Schedule <small>Edit Shifts</small></h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="UNKNOWN" class="col-md-4">
+                <div class="row">
+                    <div id="UNKNOWN" class="col-md-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                UNKNOWN
+                            </div>
+                            <div class="panel-body" id="add-req">
+                                button to clear all shift data?
+                                <button class="btn btn-primary" ng-click="$ctrl.showAddReq = !$ctrl.showAddReq">Add Special Staff Requirements</button>
+                                <div ng-show="$ctrl.showAddReq">component here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="edit-shift-calendar" class="well well-lg clearfix">
+                            <div ui-calendar="$ctrl.uiConfig.calendar" calendar="addShiftCalendar" ng-model="$ctrl.testCalendar"></div>
+                            <div class="pull-right">
+                                <button type="button" ng-click="$ctrl.toggleCalendar()" class="btn btn-secondary calendar-footer-buttons">{{$ctrl.calendarExpanded ? "Collapse" : "Expand"}}</button>
+                                <button type="button" ng-click="$ctrl.showTimeToggle = !$ctrl.showTimeToggle" class="btn btn-secondary calendar-footer-buttons">Display Hours</button>
+                            </div>
+
+
+                            <div class="row" ng-show="$ctrl.showTimeToggle">
+                                <div class="col-md-12">
+                                    <div class="well well-lg">
+                                        <h5 class="instructiona-text">Please specify the time range you would like the calendar to display.</h5>
+                                        <form name="hours-form" ng-submit="">
+                                            <fieldset class="form-group">
+                                                <div class="col-md-6 bootstrap-timepicker timepicker">
+                                                    <label for="StartHour">Start Hour</label>
+                                                    <input type="text" class="form-control calendar-time-picker" data-provide="timepicker" ng-model="$ctrl.tempShifts.displayHours.minTime">
+                                                </div>
+                                                <div class="col-md-6 bootstrap-timepicker timepicker">
+                                                    <label for="EndHour">End Hour</label>
+                                                    <input type="text" class="form-control calendar-time-picker" data-provide="timepicker" ng-model="$ctrl.tempShifts.displayHours.maxTime">
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <button class="btn btn-danger" ng-click=$ctrl.displayShifts()>Test convert</button>
+                            <button class="btn btn-info" ng-click="$ctrl.addingShift = !$ctrl.addingShift">{{$ctrl.addingShift ? "Cancel" : "Add Shift"}}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="add-shift-panel" class="panel panel-default" ng-show="$ctrl.addingShift">
+                            <div class="panel-heading">
+                                <div id="create-shift-panel-heading">
+                                    <h4 class="inline-panel-heading">Create New Shift</h4>
+                                    <div class="btn-group pull-right">
+                                        <button type="reset" class="btn btn-danger" form="make-shift-form">Clear Shift</button>
+                                        <button type="submit" class="btn btn-primary" form="make-shift-form">Add Shift</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form name="make-shift-form" id="make-shift-form" ng-submit="$ctrl.addShift($ctrl.newShift)">
+
+                                    <fieldset class="form-group">
+                                        <div class="col-md-12">
+                                            <label for="shift-title">Name Your Shift</label>
+                                            <input type="text" class="form-control" maxlength="30" ng-model="$ctrl.newShift.title">
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-group">
+                                        <div class="col-md-6">
+                                            <label for="day-select">Day</label>
+                                            <br>
+                                            <select class="form-control" id="day-select" ng-model="$ctrl.newShift.dow" multiple="multiple" required>
+                                            <option value="Sunday">Sunday</option>
+                                            <option value="Monday">Monday</option>
+                                            <option value="Tuesday">Tuesday</option>
+                                            <option value="Wednesday">Wednesday</option>
+                                            <option value="Thursday">Thursday</option>
+                                            <option value="Friday">Friday</option>
+                                            <option value="Saturday">Saturday</option>
+                                        </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="min-staff">Minumum Staff</label>
+                                            <input type="number" min="0" class="form-control" ng-model="$ctrl.newShift.minStaff">
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="form-group">
+                                        <div class="col-md-6 bootstrap-timepicker timepicker">
+                                            <label for="StartTime">Start Time</label>
+                                            <input type="text" class="form-control time-picker" data-provide="timepicker" ng-model="$ctrl.newShift.startTime" required>
+                                        </div>
+                                        <div class="col-md-6 bootstrap-timepicker timepicker">
+                                            <label for="EndTime">End Time</label>
+                                            <input type="text" class="form-control time-picker" data-provide="timepicker" ng-model="$ctrl.newShift.endTime" required>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="col-md-6 form-group">
+                                        <label for="shift-name">Optional Color</label> <span ng-click="$ctrl.showColorInst = !$ctrl.showColorInst"><span class="glyphicon glyphicon-question-sign special-button"></span></span>
+                                        <p class="instructional-text" ng-show="$ctrl.showColorInst">Use this option to pick the color of your shift block on the calendar. Using different
+                                            colors can help you tell your shifts apart more easily.</p>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <select class="form-control" ng-model="$ctrl.newShift.color">
+                                                <option class="select-blue" value="#5784B2">Blue</option>
+                                                <option class="select-red" value="#FF887F">Red</option>
+                                                <option class="select-light-blue" value="#95C9FF">Light Blue</option>
+                                                <option class="select-green" value="#C0CC63">Green</option>
+                                                <option class="select-tan" value="#AEB289">Tan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset class="col-md-6 form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                             <input type="checkbox" ng-model="$ctrl.newShift.requiresManager"> Require a manager on shift
+                                        </label>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="row">
+                                        <div class="col-md-12 instructional-text">
+                                            <h4>Options</h4>
+                                            Tell us more about your shift. If you try to schedule a shift without meeting these requirements, we'll give you a warning!
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="panel-group">
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse2">Add Minimum Cumulative Skill Level <span class="glyphicon glyphicon-plus pull-right"></span></a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse2" class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            <fieldset class="form-group">
+                                                                <div class="col-md-12">
+                                                                    <div class="instructional-text">
+                                                                        <h4>Minimum Cumulative Skill Level</h4>
+                                                                        <p>What would you like the skill level of all employees
+                                                                            on this shift to add up to?
+                                                                            <span ng-click="$ctrl.showSkillInst = !$ctrl.showSkillInst"><span class="glyphicon glyphicon-question-sign special-button"></span></span>
+                                                                        </p>
+                                                                        <div class="panel panel-default" ng-show="$ctrl.showSkillInst">
+                                                                            <div class="instructional-text">
+                                                                                <p>Sometimes naming a minimum number of staff
+                                                                                    isn't enough. Two new hires cannot perform
+                                                                                    the same as two veterans.</p>
+                                                                                <p><strong>Use this field to help you make sure you
+                                                                                    have enough talent on hand for a busy
+                                                                                    shift.</strong>
+                                                                                </p>
+                                                                                <p>To use this functionality, make sure you
+                                                                                    assign skill levels to each of your employees.</p>
+                                                                                <hr>
+                                                                                <div>
+                                                                                    <b>Example</b>
+                                                                                    <table class="table">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>Employee</th>
+                                                                                                <th>Skill Level</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td>Dasher</td>
+                                                                                                <td>2</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>Dancer</td>
+                                                                                                <td>1</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>Prancer</td>
+                                                                                                <td>1</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>Vixen</td>
+                                                                                                <td>4</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td>Rudolph</td>
+                                                                                                <td>10</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+
+                                                                                    <p>If you set your minimum skill level to
+                                                                                        7 and try to schedule inexperienced
+                                                                                        employees
+                                                                                        <b>Dasher</b>, <b>Dancer</b>, and
+                                                                                        <b>Prancer</b>, you will recieve
+                                                                                        a warning the minimum skill level
+                                                                                        is not met!</p>
+                                                                                    <p>But if you schedule <b>Dasher</b>,
+                                                                                        <b>Dancer</b>, and <b>Vixen</b>,
+                                                                                        the minimum skill level has been
+                                                                                        met.
+                                                                                    </p>
+                                                                                    <p>And if you schedule vetran <b>Rudolph</b>,
+                                                                                        he can get the job done all on his
+                                                                                        own!
+                                                                                    </p>
+                                                                                    <p><b>Want to make sure at least one person on shift has a certain/minimum skill level? Check out the Special Requirements section below!</b></p>
+                                                                                    <span class="special-button pull-right" ng-click="$ctrl.showSkillInst = false">Close</span>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <input type="number" min="0" class="form-control" ng-model="$ctrl.newShift.minSkillLevel">
+                                                                </div>
+                                                            </fieldset>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel panel-info">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" href="#collapse3">Add Special Staff Requirements <span class="glyphicon glyphicon-plus pull-right"></span></a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse3" class="panel-collapse collapse">
+
+                                                        <div class="col-md-12">
+                                                            <div class="instructional-text">
+                                                                <p>What special skills would you like staffers on this shift
+                                                                    to have?
+                                                                    <span ng-click="$ctrl.showSpecInst = !$ctrl.showSpecInst"><span class="glyphicon glyphicon-question-sign special-button"></span></span>
+                                                                </p>
+                                                                <div class="panel panel-default" ng-show="$ctrl.showSpecInst">
+                                                                    <div class="instructional-text">
+                                                                        <p>Sometimes you need staff with certain abilities or
+                                                                            certifications on hand, like someone who can
+                                                                            sell alcohol, is a registered nurse, or can fly
+                                                                            a plane.</p>
+                                                                        <p><strong>Use this field to make sure you staff have the abilities, certifications, or other special requirements needed on your shift.</strong></p>
+                                                                        <span class="special-button pull-right" ng-click="$ctrl.showSpecInst = false">Close</span>
+                                                                    </div>
+                                                                </div>
+                                                                <a ng-click="$ctrl.showAddReq = true" href="#add-req" id="add-req-link">Add special requirements?</a>
+                                                                <div class="instructional-text">
+                                                                    <h4>This shift needs...</h4>
+                                                                    <div class="well well-lg" ng-repeat="requirement in $ctrl.tempRequirements">
+                                                                        <h5>Requirement {{$index + 1}}</h5>
+                                                                        <div class="alert alert-danger" ng-show="requirement.incomplete"><strong><span class="glyphicon glyphicon-remove-circle"></span>  Incomplete</strong></div>
+                                                                        <div class="alert alert-danger" ng-show="requirement.hasDuplicate"><strong><span class="glyphicon glyphicon-remove-circle"></span>  Duplicate</strong></div>
+                                                                        <fieldset class="form-group">
+                                                                            <label for="">At least</label>
+                                                                            <input type="number" min="0" class="form-control" ng-model="requirement.numberOfStaff">
+                                                                        </fieldset>
+                                                                        <fieldset class="form-group">
+                                                                            <label for="requirement">Employees with this requirement:</label>
+                                                                            <select class="form-control" ng-model="requirement.requirement">
+                                                                            <option ng-repeat="requirement in $ctrl.dummyShiftRequirements">{{requirement}}</option>
+                                                                        </select>
+                                                                        </fieldset>
+                                                                        <span class="special-button pull-right" ng-click="$ctrl.removeRequirement(requirement)">Remove</span>
+                                                                    </div>
+                                                                    <button type="button" class="btn btn-primary" ng-click="$ctrl.addReqField()">Add More Requirements <span class="glyphicon glyphicon-plus"></span></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="add-shift-panel-footer">
+                                    <div class="btn-group pull-right">
+                                        <button type="reset" class="btn btn-danger" form="make-shift-form">Clear Shift</button>
+                                        <button type="submit" class="btn btn-primary" form="make-shift-form">Add Shift</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="selected-shift-panel" class="panel panel-default" ng-hide="$ctrl.addingShift">
+                            <div class="panel-heading">
+                                Shift Details
+                            </div>
+                            <div class="panel-body">
+                                Please select the shift you want to edit.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+</section>
+</div>

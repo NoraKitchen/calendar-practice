@@ -1,0 +1,78 @@
+.employee {
+    border: 2px solid darkgray;
+    border-radius: .9em;
+    background-color: lightgrey;
+    margin: 15px;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+    z-index: 10;
+    cursor: hand;
+}
+
+.fc-title {
+    color: black;
+}
+
+.scheduled-staff > li {  
+    border: 2px solid darkgray;
+    border-radius: .9em;
+    background-color: lightgrey;
+    margin-top: 5px;
+    width: 90px;
+    text-align: center;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/*shift maker styles*/
+
+.inline-panel-heading {
+    display: inline-block;
+}
+
+.instructional-text {
+    color: gray;
+    padding: 30px;
+}
+
+.special-button {
+    color: cornflowerblue;
+    cursor: hand;
+}
+
+.add-shift-panel-footer {
+    height: 40px;
+}
+
+.warning {
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.calendar-footer-buttons {
+    margin: 10px 2px;
+}
+
+/*shift maker calendar styles, might be used other calendar*/
+
+.select-blue {
+    background-color: #5784B2;
+}
+
+.select-red {
+    background-color: #FF887F;
+}
+
+.select-light-blue {
+    background-color: #95C9FF;
+}
+
+.select-green {
+    background-color: #C0CC63;
+}
+
+.select-tan {
+    background-color: #AEB289;
+}

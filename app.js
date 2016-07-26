@@ -1,0 +1,1 @@
+angular.module("calendar-test", ['ui.calendar']);
